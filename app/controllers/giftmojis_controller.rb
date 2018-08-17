@@ -1,3 +1,4 @@
+require 'pry'
 class GiftmojisController < ApplicationController
 	
     def new 
@@ -7,12 +8,14 @@ class GiftmojisController < ApplicationController
             @giftmoji = Giftmoji.new 
         end 
         if session[:user_id]
+             binding.pry
             @user = User.find_by_id(session[:user_id])
-            if @user.admin
-                render "new"
-            elsif @giftmoji.user_id == @user 
-                render "new" 
-            end 
+           
+            #if @user.admin
+            #    render "new"
+            #elsif @giftmoji.user_id == @user 
+            #    render "new" 
+            #end 
         end 
     end
 
