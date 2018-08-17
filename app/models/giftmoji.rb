@@ -5,6 +5,7 @@ class Giftmoji < ApplicationRecord
 	has_many :emotions, through: :giftmoji_emotions
 	validates :user_id, :presence => false
 	validates :occasion_id, :presence => false
+	validates :price, :presence => true 
 
 	def gift(recipient_name) 
 		if self.user_id == session[:user_id]
