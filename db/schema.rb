@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_150621) do
     t.string "tag"
     t.integer "price"
     t.integer "user_id"
-    t.integer "occasion_id"
+    t.integer "occasion_id", default: 1
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

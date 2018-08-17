@@ -5,7 +5,7 @@ class CreateGiftmojis < ActiveRecord::Migration[5.2]
       t.string :tag
       t.integer :price
       t.integer :user_id
-      t.integer :occasion_id
+      t.integer :occasion_id, default: 1
       t.text :message
       t.timestamps
     end

@@ -3,6 +3,7 @@ class User < ApplicationRecord
          has_many :giftmojis
          has_many :giftmoji_emotions, through: :giftmojis 
          has_many :emotions, through: :giftmoji_emotions
+         has_many :occasions, through: :giftmojis
 
     def buy(gimoji)
 		if self.gift_coins >= giftmoji.price
