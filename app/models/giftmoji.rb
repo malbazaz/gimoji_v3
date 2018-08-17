@@ -3,8 +3,6 @@ class Giftmoji < ApplicationRecord
 	belongs_to :occasion, optional: true
 	has_many :giftmoji_emotions 
 	has_many :emotions, through: :giftmoji_emotions
-	validates :user_id, :presence => false
-	validates :occasion_id, :presence => false
 	validates :price, :presence => true 
 
 	def gift(recipient_name) 
