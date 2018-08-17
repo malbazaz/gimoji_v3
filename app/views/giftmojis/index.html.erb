@@ -1,14 +1,15 @@
 Please find all the giftmoji's you can still buy:
 <% @giftmojis.each do |giftmoji| %>
-<% if giftmoji_has_no_owner?  %>
-<%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - price: <%= @giftmoji.price %> giftcoins.
+<p><% if giftmoji.user_id.nil?  %>
+<%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - price: <%= giftmoji.price %> giftcoins.</p>
 <% end %>
 <% end %>
 
 Please find all the giftmoji's that were purchased and their owners:
 <% @giftmojis.each do |giftmoji| %>
-<% if !giftmoji_has_no_owner? %>
-<%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - owned by: <%= link_to giftmoji.user.name, user_path(giftmoji.user) %>
+<p>
+<% if !giftmoji.user_id.nil? %>
+<%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - owned by: <%= link_to giftmoji.user.name, user_path(giftmoji.user) %></p>
 <% end %>
 <% end %>
 
