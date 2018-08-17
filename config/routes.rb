@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :emotions
   resources :occasions
   resources :giftmojis
   resources :users
