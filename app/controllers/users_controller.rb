@@ -5,9 +5,10 @@ class UsersController < ApplicationController
     end 
     
     def create 
-        binding.pry
+        #binding.pry
         @user= User.create(user_params)
         session[:user_id]= @user.id
+        redirect_to '/users/:id'
     end 
 
 	def index
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
     private 
 
     def user_params 
-        params.require(:user).permit(:fullname, :username, :password, :giftcoins, :admin, :email)
+        params.require(:user).permit(:fullname, :username, :password, :giftcoins, :admin, :email, :password_confirmation)
     end 
 
 end

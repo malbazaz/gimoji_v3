@@ -1,0 +1,4 @@
+<h2><%= occasion.name %></h2>
+<h3><% occasion.giftmojis.each do |giftmoji|
+	<%= link_to giftmoji.name, giftmoji_path(giftmoji) %>
+	<% end %></h3>
