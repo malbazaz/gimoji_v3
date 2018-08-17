@@ -17,7 +17,7 @@ class EmotionsController < ApplicationController
     def index 
         
         if !!session[:user_id]
-            @emotions = emotion.all
+            @emotions = Emotion.all
         else 
             redirect_to '/'
         end
