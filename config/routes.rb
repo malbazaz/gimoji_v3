@@ -12,5 +12,14 @@ get 'login', to: 'sessions#new'
 post '/login' => 'sessions#create'
 get  '/logout' => 'sessions#destroy'
 post '/logout' => 'sessions#destroy'
+
+post '/giftmoji/:id/buy' => 'users#update'
+
+  #Nested resource for (Occasion - Gimojis)
+ # resources :occasions, only [:show, :index] do 
+ #   resources :giftmojis, only [:show, :index]
+ # end 
+
+  #Nested resource (User -> Gimojis) ??
   #For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
