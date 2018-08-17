@@ -1,3 +1,4 @@
+require 'pry'
 module GiftmojisHelper
 
 		def current_user 
@@ -14,11 +15,8 @@ module GiftmojisHelper
 		end  
 	end
 
-	def giftmoji_has_no_owner?
-		giftmoji.user_id == "" || giftmoji.user_id == nil || giftmoji.user_id == false
-	end 
-
 	def giftmoji_owner?
 		current_user == @giftmoji.user 
 	end 
+
 end

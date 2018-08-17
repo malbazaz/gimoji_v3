@@ -1,4 +1,4 @@
-<h2><%= @giftmoji.title %></h2>
+<h2><%= @giftmoji.name %></h2>
 
 <h3> Tagline: <%= @giftmoji.tag %> </h3>
 <h4> Price: <%= @giftmoji.price %></h4>
@@ -8,7 +8,7 @@
 <%= emo.name %>
 <% end %>
 
-<% if giftmoji_has_no_owner? %>
+<% if @giftmoji.owner_id.nil? %>
 <h3> Buy this Gimoji: </h3>
 <!-- Alternative way of doing:
 <form action="/giftmojis/<%= @giftmoji.id%>/buy" method="post">
