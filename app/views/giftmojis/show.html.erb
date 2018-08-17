@@ -30,14 +30,11 @@
 <h3>Gift this Giftmoji:</h3>
 <%= form_for @giftmoji do |f| %>
 <%= f.label "Gift Recipient:" %>
-<%= f.collection_select :user_id, User.all, :id, :username, include_blank: 'Any'%>
+<%= f.collection_select :user_id, User.all, :id, :username, include_blank: 'Any'%><br/>
 <%= f.label "Occasion" %>
-<%= f.collection_select :occasion_id, Occasion.all, :id, :name, include_blank: 'Any'%>
-<%= f.fields_for :occasion, @giftmoji.occasions.last.build_occasion do |occasion_fields| %>
-<%= occasion_fields.text_field :name %>
-<% end %>
-<%= f.label "Message: (Please sign in your name.)" %>
-<%= f.text_area :message %>
-<%= f.submit %>
+<%= f.collection_select :occasion_id, Occasion.all, :id, :name, include_blank: 'Any'%></br>
+<%= f.label "Message:" %> (Please sign the message.)
+<%= f.text_area :message %><br/><br/>
+<%= f.submit "Gift Gimoji" %>
 <% end %>
 <% end %>
