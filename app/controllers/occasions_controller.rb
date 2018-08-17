@@ -43,4 +43,4 @@ class OccasionsController < ApplicationController
         params.require(:occasion).permit(:name)
     end 
 end
-end
+

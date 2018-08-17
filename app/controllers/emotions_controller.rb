@@ -44,4 +44,4 @@ class EmotionsController < ApplicationController
         params.require(:emotion).permit(:name)
     end 
 end
-end
+

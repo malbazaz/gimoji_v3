@@ -12,7 +12,7 @@ class Giftmoji < ApplicationRecord
   			self.save
   		end 
   	end 
-  end
+
 
   # add class method of [most expensive giftmoji]
   # add class of gimoji with most emotions
