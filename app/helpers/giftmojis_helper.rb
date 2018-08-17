@@ -1,8 +1,8 @@
 module GiftmojisHelper
 
 		def current_user 
-	user = User.find_by_id(session[:user_id])
-	end 
+			user = User.find_by_id(session[:user_id])
+		end 
 
 	def giftmoji_gifted? 
 		if @giftmoji.message == "" || @giftmoji.message == nil 
