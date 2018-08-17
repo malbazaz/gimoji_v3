@@ -8,7 +8,7 @@
 <%= emo.name %>
 <% end %>
 
-<% if @giftmoji.owner_id.nil? %>
+<% if @giftmoji.user_id.nil? %>
 <h3> Buy this Gimoji: </h3>
 <!-- Alternative way of doing:
 <form action="/giftmojis/<%= @giftmoji.id%>/buy" method="post">
