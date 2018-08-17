@@ -1,16 +1,11 @@
 
 <h2>Log in</h2>
 
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, :url => url_for(:controller => 'sessions', :action => 'create')) do |f| %>
 
   <div class="field">
     <%= f.label :username, "Login with your username" %><br />
     <%= f.text_field :username %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email, "Login with your email" %><br />
-    <%= f.email_field :email %>
   </div>
 
   <div class="field">
@@ -22,4 +17,4 @@
     <%= f.submit "Log in" %>
   </div>
 <% end %>
-<p> If you would like to Log in with Facebook instead. Please click <a href="">here</a></p>
+<p> If you would like to Log in with Facebook instead. Please click <a href="/">here</a></p>
