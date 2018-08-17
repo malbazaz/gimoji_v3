@@ -1,0 +1,2 @@
+class GiftmojisController < ApplicationController
+end
