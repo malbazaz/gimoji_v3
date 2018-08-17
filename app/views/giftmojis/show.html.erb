@@ -18,7 +18,8 @@
 <%= form_for @giftmoji, url:user_path(@user) do |f|%>
 <%= f.hidden_field :buy, :value => @giftmoji %> <!-- Need to test this -->
 <%= f.submit "Buy Giftmoji"%>
-
+<% end %>
+<% end %>
 
 <% if giftmoji_gifted? && giftmoji_owner? %>
 <h3>Occasion: <%= @giftmoji.occasion %></h3>
@@ -28,7 +29,7 @@
 <% if !giftmoji_gifted? && giftmoji_owner? %>
 <h3>Gift this Giftmoji:</h3>
 <%= form_for @giftmoji.build do |f| %>
-<%= f.label "Gift Recipient:"
+<%= f.label "Gift Recipient:" %>
 <%= f.collection_select :user_id, User.all, :id, :name, include_blank: 'Any'%>
 <%= f.label "Occasion" %>
 <%= f.collection_select :occasion_id, Occasion.all, :id, :name, include_blank: 'Any'%>

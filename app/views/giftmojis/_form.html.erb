@@ -7,7 +7,7 @@
     <%= f.number_field :price %>
     <%= f.label "Emotions" %>
     <%= f.collection_check_boxes :emotion_ids, Emotion.all, :id, :name %>
-    <%= f.fields_for :emotions, giftmoji.emotions.build do |emotions_fields| %>
+    <%= f.fields_for :emotions, @giftmoji.emotions.build do |emotions_fields| %>
       <%= emotions_fields.text_field :name %>
     <% end %>
     
