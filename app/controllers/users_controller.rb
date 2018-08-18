@@ -24,6 +24,20 @@ class UsersController < ApplicationController
         end
     end 
 
+    def update
+        @user = User.find_by_id(session[:user_id])
+        if params[:giftmoji][:id]
+            @giftmoji = Giftmoji.find_by_id(params[:giftmoji][:id])
+            @giftmoji.user = @user 
+            @giftmoji.save
+            #binding.pry 
+            @user.giftcoins -= @giftmoji.price 
+            @user.save
+            # FLASH MESSAGE  
+        end  
+        #binding.pry
+        redirect_to "/users/#{@user.id}"
+    end 
 
     private 
 

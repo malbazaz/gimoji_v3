@@ -16,7 +16,7 @@
 <input type="submit" value="Buy Giftmoji" name="Buy Giftmoji" id="Buy Giftmoji">
 </form> -->
 <%= form_for @giftmoji, url:user_path(@user) do |f|%>
-<%= f.hidden_field :buy, :value => @giftmoji %> <!-- Need to test this -->
+<%= f.hidden_field :id, :value => @giftmoji.id %> <!-- Need to test this -->
 <%= f.submit "Buy Giftmoji"%>
 <% end %>
 <% end %>
