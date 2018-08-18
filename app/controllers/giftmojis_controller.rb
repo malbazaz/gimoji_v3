@@ -7,7 +7,6 @@ class GiftmojisController < ApplicationController
         else 
             @giftmoji = Giftmoji.new 
         end 
-        #binding.pry
         if session[:user_id]
             @user = User.find_by_id(session[:user_id])
            
@@ -20,21 +19,9 @@ class GiftmojisController < ApplicationController
     end
 
     def create 
-        #binding.pry
         @giftmoji = Giftmoji.create(giftmoji_params)
-        #binding.pry
-        if params[:giftmoji][:emotion_ids]
-        emotion_ids = params[:giftmoji][:emotion_ids]
-        emotion_ids.each do |em|
-           # binding.pry
-            if  em !=""
-                emotion = Emotion.find_by_id(em)
-                @giftmoji.emotions << emotion
-            end 
-        end 
-    end 
-        emo = Emotion.find_or_create_by(name: params[:giftmoji][:emotions][:name])
-        @giftmoji.emotions << emo
+        update_gimoji_with_emotions_ids
+        update_gimoji_with_emotion_name
         @giftmoji.save
         redirect_to "/giftmojis/#{@giftmoji.id}"
  
@@ -65,11 +52,12 @@ class GiftmojisController < ApplicationController
 
     def update
     # need to update giftmoji by admin & update when gifted 
-    #binding.pry
     if params[:id]
         @giftmoji = Giftmoji.find_by_id(params[:id])
-        @giftmoji.update(attr_params)
-        @giftmoji.save 
+        @giftmoji.update(giftmoji_params)
+        update_gimoji_with_emotions_ids
+        update_gimoji_with_emotion_name
+        @giftmoji.save
         redirect_to "/giftmojis/#{@giftmoji.id}"
     end
     end 
@@ -78,4 +66,29 @@ class GiftmojisController < ApplicationController
     def giftmoji_params 
         params.require(:giftmoji).permit(:name, :tag, :price, :message, :occasion_id, :user_id)
     end 
+
+    def update_gimoji_with_emotions_ids
+        if params[:giftmoji][:emotion_ids]
+            emotion_ids = params[:giftmoji][:emotion_ids]
+            emotion_ids.each do |em|
+                if  em !=""
+                    emotion = Emotion.find_by_id(em)
+                    binding.pry
+                    if !@giftmoji.emotions.include?(emotion)
+                    @giftmoji.emotions << emotion
+
+                    end
+                end 
+            end 
+        end 
+        @giftmoji.save
+    end 
+    def update_gimoji_with_emotion_name
+        emo = Emotion.find_or_create_by(name: params[:giftmoji][:emotions][:name])
+        if !@giftmoji.emotions.include?(emotion)
+            @giftmoji.emotions << emo
+        end
+        @giftmoji.save
+    end 
+
 end
