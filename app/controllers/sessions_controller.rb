@@ -12,10 +12,7 @@ class SessionsController < ApplicationController
     end 
     session[:user_id] = @user.id 
     redirect_to "/users/#{@user.id}"
-  end 
-
-
-  	elsif params[:user][:username]
+  elsif params[:user][:username]
     	@user = User.find_by(username: params[:user][:username])
 	    if @user
         return redirect_to 'login' unless @user.authenticate(params[:user][:password])
