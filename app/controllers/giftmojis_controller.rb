@@ -4,7 +4,9 @@ class GiftmojisController < ApplicationController
     def new 
         if params[:occasion_id]
             @giftmoji = Giftmoji.new(occasion_id: params[:occasion_id])
-        else 
+        elsif params[:user_id]
+             @giftmoji = Giftmoji.new(user_id: params[:user_id])
+        else  
             @giftmoji = Giftmoji.new 
         end 
 
@@ -56,7 +58,7 @@ class GiftmojisController < ApplicationController
 
     def update
     # need to update giftmoji by admin & update when gifted 
-    binding.pry
+    #binding.pry
     if params[:id]
         @giftmoji = Giftmoji.find_by_id(params[:id])
         @giftmoji.update(giftmoji_params)

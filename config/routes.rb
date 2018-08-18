@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   resources :sessions
 
   resources :users, only: [:show] do 
-  	resources :giftmojis, only: [:show, :index]
+  	resources :giftmojis, only: [:show, :index, :new]
   end 
-  
+
 
 get '/users/:id' => 'users#show'
 get '/' =>"application#index"
