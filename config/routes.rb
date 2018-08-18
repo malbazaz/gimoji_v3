@@ -18,6 +18,8 @@ post '/login' => 'sessions#create'
 get  '/logout' => 'sessions#destroy'
 post '/logout' => 'sessions#destroy'
 
+get '/auth/facebook/callback' => 'sessions#create'
+
 post '/giftmoji/:id/buy' => 'users#update'
 
   #Nested resource for (Occasion - Gimojis)
