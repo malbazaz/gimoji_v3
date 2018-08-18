@@ -29,14 +29,17 @@ class GiftmojisController < ApplicationController
     end 
 
     def index 
-        
         if !!session[:user_id]
-            @user = User.find_by_id(params[:id])
-            if params[:occasion_id]
-                @giftmojis = Occasion.find(params[:occasion_id]).giftmojis
+            if params[:user_id]
+                @giftmojis = User.find_by_id(params[:user_id]).giftmojis 
             else 
-                @giftmojis = Giftmoji.all
-            end
+                @user = User.find_by_id(params[:id])
+                if params[:occasion_id]
+                    @giftmojis = Occasion.find(params[:occasion_id]).giftmojis
+                else 
+                    @giftmojis = Giftmoji.all
+                end
+            end 
         else 
             redirect_to '/'
         end

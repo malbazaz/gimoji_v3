@@ -9,7 +9,7 @@
 <% @giftmojis.each do |giftmoji| %>
 <p>
 <% if !giftmoji.user_id.nil? %>
-<%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - owned by: <%= link_to giftmoji.user.fullname, user_path(giftmoji.user) %></p>
+<%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - owned by: <%= link_to giftmoji.user.fullname, user_giftmojis_path(giftmoji.user) %></p>
 <% end %>
 <% end %>
 

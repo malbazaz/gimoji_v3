@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
 
+  resources :users, only: [:show] do 
+  	resources :giftmojis, only: [:show, :index]
+  end 
+  
+
 get '/users/:id' => 'users#show'
 get '/' =>"application#index"
 get '/signup' => 'users#new'
