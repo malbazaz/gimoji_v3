@@ -1,13 +1,13 @@
 <h2><%= @giftmoji.name %></h2>
 
-<h3> Tagline: <%= @giftmoji.tag %> </h3>
+<h4> Tagline: <%= @giftmoji.tag %> </h4>
 <h4> Price: <%= @giftmoji.price %></h4>
 <% if @giftmoji.user_id %>
 <h4> Owned by: <%= @giftmoji.user.fullname %></h4>
 <% end %>
 
-<h3>Emotions:</h3>
-<p> <% @giftmoji.emotions.each do |emo| %>
+<h4>Emotions:</h4>
+<% @giftmoji.emotions.each do |emo| %>
 <%= emo.name %>
 <% end %>
 
