@@ -16,12 +16,18 @@ class SessionsController < ApplicationController
         u.email = auth['info']['email']
       end 
     end 
-      session[:user_id] = @user.id 
+    if session[:user_id]
+      session[:user_id] = @user.id
+      flash[:message] = "You have successfully logged in" 
       redirect_to "/users/#{@user.id}"
+    else 
+      flash[:message] = "Please enter the right data to login. Otherwise, sign up."
+    end 
   end 
 
   def destroy
     session.delete :user_id 
+    flash[:message] = "You have successfully logged out."
     redirect_to '/'
   end 
 
@@ -29,7 +35,5 @@ private
   def auth 
     request.env['omniauth.auth']
   end
-
-
 
 end 

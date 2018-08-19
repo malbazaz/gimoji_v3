@@ -30,6 +30,7 @@ class GiftmojisController < ApplicationController
         update_giftmoji_with_emotions_ids
         update_giftmoji_with_emotion_name
         @giftmoji.save
+        flash[:message] = "You have successfully created a Giftmoji called #{@giftmoji.name}"
         redirect_to "/giftmojis/#{@giftmoji.id}"
     end 
 
@@ -46,6 +47,7 @@ class GiftmojisController < ApplicationController
                 end
             end 
         else 
+            flas[:message] = "Please login."
             redirect_to '/'
         end
     end 

@@ -21,6 +21,7 @@ class UsersController < ApplicationController
             #binding.pry
              @user = User.find_by_id(params[:id])
         else 
+            flash[:message] = "You are not logged in, please login."
             redirect_to '/'
         end
     end 
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
             @user.buy(@giftmoji)
             #binding.pry 
             @user.save
-            # FLASH MESSAGE  
+            flash[:message] = "You have successfully purchased the #{@giftmoji.name} Giftmoji."
         end  
         
         redirect_to "/users/#{@user.id}"
