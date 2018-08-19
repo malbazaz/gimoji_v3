@@ -14,8 +14,12 @@ class Giftmoji < ApplicationRecord
   		end 
   	end 
 
+  	def Giftmoji.name_of_most_expensive
+  	@most_expensive	= Giftmoji.all.order(price: :desc).limit(1).pluck(:name)[0]
+  	end
 
-  # add class method of [most expensive giftmoji]
+
+
   # add class of gimoji with most emotions
   # add most gifts on what occasion 
 
