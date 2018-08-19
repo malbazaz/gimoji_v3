@@ -4,7 +4,9 @@
     <% end %>
     <p><strong>Name:</strong> <%= @user.fullname %></p>
     <p><strong>Username:</strong> <%= @user.username %></p>
+    <% if user_admin? || current_user? %>
     <p><strong>Giftcoins Balance:</strong>  <%= @user.giftcoins %></p>
+    <% end %>
     <p><strong>Giftmojis:</strong> <% @user.giftmojis.each do |giftmoji| %>
                                    <%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - 
                                    <%end%></p>

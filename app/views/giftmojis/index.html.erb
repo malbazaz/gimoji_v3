@@ -10,7 +10,7 @@
 <h4> There are no Giftmojis to buy.</h4>
 <% end %>
 
-<h4> Please find all the Giftmojis that were purchased and their owners:</h4>
+<h4> Please find all the Giftmojis that were purchased/gifted and their current owners:</h4>
 <% @giftmojis.each do |giftmoji| %>
 <p>
 <% if !giftmoji.user_id.nil? %>
