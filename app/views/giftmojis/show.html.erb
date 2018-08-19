@@ -25,10 +25,9 @@
 <% end %>
 
 <% if giftmoji_gifted? && giftmoji_owner? %>
-<h3> This was gifted </h3>
-<h3>Occasion: <%= @giftmoji.occasion.name %></h3>
-<h3>Message: <%= @giftmoji.message %></h3>
-<h3>Gifted by: <%= @giftmoji.gifted_by %></h3>
+<h4> This Giftmoji was gifted by <%= @giftmoji.gifted_by %></h4>
+<h4>Occasion: <%= @giftmoji.occasion.name %></h4>
+<h4>Message: <%= @giftmoji.message %></h4>
 <% end %>
 
 <% if !giftmoji_gifted? && giftmoji_owner? %>
