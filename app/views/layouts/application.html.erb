@@ -21,9 +21,12 @@
         <a class="navbar-brand" href="<%= '/signup' %>"/>Sign Up</a>
         <a class="navbar-brand" href="<%= '/signin' %>"/>Sign In</a>
         <% end %>
+        <br/>
+        <% if logged_in? %>
         <a class="navbar-brand" href="<%= '/giftmojis' %>"/>Giftmojis Index</a>
         <a class="navbar-brand" href="<%= '/emotions' %>"/>Emotions Index</a>
         <a class="navbar-brand" href="<%= '/occasions' %>"/>Occasions Index</a>
+        <% end %>
         <% if user_admin? %>
         <a class="navbar-brand" href="<%= '/giftmojis/new' %>">Create Giftmoji</a>
         <a class="navbar-brand" href="<%= '/emotions/new' %>">Create Emotion</a>
