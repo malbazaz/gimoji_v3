@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     def update
         @user = User.find_by_id(session[:user_id])
         if params[:giftmoji][:id]
+            #binding.pry
             @giftmoji = Giftmoji.find_by_id(params[:giftmoji][:id])
             @user.buy(@giftmoji)
             #binding.pry 

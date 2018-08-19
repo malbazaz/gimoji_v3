@@ -9,7 +9,7 @@
                                    <%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - 
                                    <%end%></p>
     <p><%= link_to 'See all Giftmojis', giftmojis_path %></p>
-    <p><strong>Emotions:</strong> <% @user.emotions.each do |emotion| %>
+    <p><strong>Emotions:</strong> <% @user.emotions.uniq.each do |emotion| %>
                                    <%= link_to emotion.name, emotion_path(emotion) %> - 
                                    <%end%></p>
     <p><%= link_to 'See all Emotions', emotions_path %></p>

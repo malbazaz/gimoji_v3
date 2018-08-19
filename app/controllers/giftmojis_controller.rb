@@ -67,11 +67,11 @@ class GiftmojisController < ApplicationController
 
     def update
         if params[:id]
-            binding.pry 
+            #binding.pry 
             @giftmoji = Giftmoji.find_by_id(params[:id])
             @giftmoji.update(giftmoji_params)
             @giftmoji.gifted_by = User.find_by_id(session[:user_id]).fullname
-            @giftmoji.save 
+            @giftmoji.save
             if params[:commit] == "Gift Giftmoji"
                 flash[:message] = "You're gift was successful"
             else
