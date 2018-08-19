@@ -7,14 +7,15 @@ class User < ApplicationRecord
          validates :password, length: 4..20
          validates :fullname, presence: true 
 
-    def buy(gimoji)
-		if self.gift_coins >= giftmoji.price
-			self.gift_coins -= giftmoji.price 
+    def buy(giftmoji)
+		if self.giftcoins > giftmoji.price
+			self.giftcoins -= giftmoji.price 
 			giftmoji.user_id = self.id 
 			giftmoji.save 
 			self.save 
+			"You have successfully bought the #{giftmoji.name} Giftmoji"
 		else 
-			"You don't have any enough giftcoins to purchase this giftmoji"
+			"You don't have any enough giftcoins to purchase this Giftmoji"
 		end 
 	end 
 end

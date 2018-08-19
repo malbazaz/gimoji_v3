@@ -12,6 +12,9 @@ class GiftmojisController < ApplicationController
 
         if session[:user_id]
             @user = User.find_by_id(session[:user_id])
+            if !@user.admin
+                redirect_to "/giftmojis"
+            end  
            
            # if @user.admin
            #     render "new"
@@ -22,12 +25,12 @@ class GiftmojisController < ApplicationController
     end
 
     def create 
+         # binding.pry
         @giftmoji = Giftmoji.create(giftmoji_params)
-        update_gimoji_with_emotions_ids
-        update_gimoji_with_emotion_name
+        update_giftmoji_with_emotions_ids
+        update_giftmoji_with_emotion_name
         @giftmoji.save
         redirect_to "/giftmojis/#{@giftmoji.id}"
- 
     end 
 
     def index 
@@ -52,35 +55,52 @@ class GiftmojisController < ApplicationController
         @user = User.find_by_id(session[:user_id])
     end 
 
-    def edit 
+    def edit
+        if session[:user_id]
+            @user = User.find_by_id(session[:user_id])
+            if !@user.admin
+                redirect_to "/giftmojis"
+            end
         @giftmoji = Giftmoji.find_by_id(params[:id])
+        end
     end 
 
     def update
-    # need to update giftmoji by admin & update when gifted 
-    #binding.pry
-    if params[:id]
-        @giftmoji = Giftmoji.find_by_id(params[:id])
-        @giftmoji.update(giftmoji_params)
-        update_gimoji_with_emotions_ids
-        update_gimoji_with_emotion_name
-        @giftmoji.save
-        if params[:commit]["Gift Gimoji"]
-        # FLASH MESSAGE - SUCCESSFUL GIFT
-        else
-        # FLASH MESSAGE - SUCCESSFUL UPDATE
-        end 
-        redirect_to "/giftmojis/#{@giftmoji.id}"
-    end
-
+        if params[:id]
+            binding.pry 
+            @giftmoji = Giftmoji.find_by_id(params[:id])
+            @giftmoji.update(giftmoji_params)
+            @giftmoji.gifted_by = User.find_by_id(session[:user_id]).fullname
+            @giftmoji.save 
+            if params[:commit] == "Gift Giftmoji"
+                flash[:message] = "You're gift was successful"
+            else
+                update_giftmoji_with_emotions_ids
+                update_giftmoji_with_emotion_name
+                @giftmoji.save
+                flash[:message] = "You have succesfully updated the Giftmoji"
+            end 
+            redirect_to "/giftmojis/#{@giftmoji.id}"
+        end
     end 
+
     private 
 
     def giftmoji_params 
         params.require(:giftmoji).permit(:name, :tag, :price, :message, :occasion_id, :user_id)
+        
     end 
 
-    def update_gimoji_with_emotions_ids
+    def emotion_ids_params
+        params.require(:giftmoji).permit(emotion_ids:[])
+    end 
+
+    def emotion_name_params
+        params.require(:giftmoji).permit(emotions:[:name])
+    end 
+    def update_giftmoji_with_emotions_ids
+        emotion_ids_params
+        #binding.pry
         if params[:giftmoji][:emotion_ids]
             emotion_ids = params[:giftmoji][:emotion_ids]
             emotion_ids.each do |em|
@@ -94,12 +114,12 @@ class GiftmojisController < ApplicationController
         end 
         @giftmoji.save
     end 
-    def update_gimoji_with_emotion_name
+    def update_giftmoji_with_emotion_name
+        emotion_name_params
+        #binding.pry
         if params[:giftmoji][:emotions][:name] != ""
             emo = Emotion.find_or_create_by(name: params[:giftmoji][:emotions][:name])
-            if !@giftmoji.emotions.include?(emotion)
                 @giftmoji.emotions << emo
-            end
             @giftmoji.save
         end 
     end 

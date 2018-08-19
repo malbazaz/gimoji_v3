@@ -2,6 +2,7 @@
 
 <h3> Tagline: <%= @giftmoji.tag %> </h3>
 <h4> Price: <%= @giftmoji.price %></h4>
+<h4> Owned by: <%= @giftmoji.user.fullname %></h4>
 
 <h3>Emotions:</h3>
 <p> <% @giftmoji.emotions.each do |emo| %>
@@ -22,8 +23,10 @@
 <% end %>
 
 <% if giftmoji_gifted? && giftmoji_owner? %>
-<h3>Occasion: <%= @giftmoji.occasion %></h3>
+<h3> This was gifted </h3>
+<h3>Occasion: <%= @giftmoji.occasion.name %></h3>
 <h3>Message: <%= @giftmoji.message %></h3>
+<h3>Gifted by: <%= @giftmoji.gifted_by %></h3>
 <% end %>
 
 <% if !giftmoji_gifted? && giftmoji_owner? %>
@@ -35,6 +38,6 @@
 <%= f.collection_select :occasion_id, Occasion.all, :id, :name, include_blank: 'Any'%></br>
 <%= f.label "Message:" %> (Please sign the message.)
 <%= f.text_area :message %><br/><br/>
-<%= f.submit "Gift Gimoji" %>
+<%= f.submit "Gift Giftmoji" %>
 <% end %>
 <% end %>
