@@ -1,15 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GimojiV3</title>
+    <title>Giftmoji App </title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+        <a class="navbar-brand" href="<%= '/' %>"/>Home</a>
+        </div>
+        <% if logged_in? %>
+        <%= link_to user_name, "/users/#{session[:user_id]}" %>
+        <a class="navbar-brand" href="<%= '/users' %>"/>Users Index</a>
+        <a class="navbar-brand" href="<%= '/logout' %>" name="Log Out" id="Log Out">Log Out</a>
+        <% else %>
+        <a class="navbar-brand" href="<%= '/signup' %>"/>Sign Up</a>
+        <a class="navbar-brand" href="<%= '/signin' %>"/>Sign In</a>
+        <% end %>
+        <a class="navbar-brand" href="<%= '/giftmojis' %>"/>Giftmojis Index</a>
+        <a class="navbar-brand" href="<%= '/emotions' %>"/>Emotions Index</a>
+        <a class="navbar-brand" href="<%= '/occasions' %>"/>Occasions Index</a>
+        <% if user_admin? %>
+        <a class="navbar-brand" href="<%= '/giftmojis/new' %>">Create Giftmoji</a>
+        <a class="navbar-brand" href="<%= '/emotions/new' %>">Create Emotion</a>
+        <a class="navbar-brand" href="<%= '/occasions/new' %>">Create Occasion</a>
+        <% end %>
+
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- content -->
+    <div class="container"  role="main">
+      <%= yield %>
+    </div>
   </body>
 </html>

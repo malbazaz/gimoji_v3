@@ -1,11 +1,16 @@
-<h4> Please find all the giftmoji's you can still buy: </h4>
+
+<% if no_owner? %>
+<h4> Please find all the Giftmojis you can still buy: </h4>
 <% @giftmojis.each do |giftmoji| %>
 <p><% if giftmoji.user_id.nil?  %>
 <%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - price: <%= giftmoji.price %> giftcoins.</p>
 <% end %>
 <% end %>
+<% else %>
+<h4> There are no Giftmojis to buy.</h4>
+<% end %>
 
-<h4> Please find all the giftmoji's that were purchased and their owners:</h4>
+<h4> Please find all the Giftmojis that were purchased and their owners:</h4>
 <% @giftmojis.each do |giftmoji| %>
 <p>
 <% if !giftmoji.user_id.nil? %>
@@ -13,4 +18,4 @@
 <% end %>
 <% end %>
 
-<h4> To buy or see the full profile of the Giftmoji's, please click on them. </h4>
+<p> To buy or see the full profile of the Giftmoji's, please click on them. </p>

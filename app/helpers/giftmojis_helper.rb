@@ -19,4 +19,8 @@ module GiftmojisHelper
 		current_user == @giftmoji.user 
 	end 
 
+	def no_owner?
+		Giftmoji.any? { |u| u.user_id.nil? }
+	end 
+
 end

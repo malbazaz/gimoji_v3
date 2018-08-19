@@ -1,3 +1,11 @@
+<% if logged_in? %>
+<h1> Welcome back <%= @user.fullname %> to the Giftmoji App !!!</h1>
+<h2><%= link_to 'See all Giftmojis', giftmojis_path %></h2>
+<h2><%= link_to 'See all Emotions', emotions_path %></h2>
+<% else %>
 <h1> Welcome to the Giftmoji App </h1>
+<h2> You are not logged in </h2>
 <h2> To register click <a href="/signup">here</a>
 <h2> If you have an account, to login click <a href="/login">here</a>
+<h2> or Login with facebook, by clicking<a href="/auth/facebook">here</a></h2>
+<% end %>
