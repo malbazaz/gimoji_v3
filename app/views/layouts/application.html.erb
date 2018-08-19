@@ -19,7 +19,7 @@
         <a class="navbar-brand" href="<%= '/logout' %>" name="Log Out" id="Log Out">Log Out</a>
         <% else %>
         <a class="navbar-brand" href="<%= '/signup' %>"/>Sign Up</a>
-        <a class="navbar-brand" href="<%= '/signin' %>"/>Sign In</a>
+        <a class="navbar-brand" href="<%= '/login' %>"/>Sign In</a>
         <% end %>
         <br/>
         <% if logged_in? %>
@@ -44,6 +44,9 @@
 
     <!-- content -->
     <div class="container"  role="main">
+      <% if flash[:message] %>
+      <%= flash[:message] %>
+      <% end %>
       <%= yield %>
     </div>
   </body>
