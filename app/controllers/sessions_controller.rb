@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
         u.fullname = auth['info']['name']
         u.username = auth['info']['name'].gsub(" ", "-").downcase
         u.email = auth['info']['email']
-        u.password = auth['info']['name']
+        #u.password = auth['info']['name']
       end 
       @user.save 
       if @user.id.nil? && auth['uid']
