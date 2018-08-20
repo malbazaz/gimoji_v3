@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   	resources :giftmojis, only: [:show, :index, :new]
   end 
 
-
+get '/most_giftmojis' => 'users#most_giftmojis'
 get '/users/:id' => 'users#show'
 get '/' =>"application#index"
 get '/signup' => 'users#new'

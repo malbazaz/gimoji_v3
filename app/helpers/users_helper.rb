@@ -1,4 +1,5 @@
 module UsersHelper
+    include Rails.application.routes.url_helpers
 
 	def user_admin?
         #binding.pry
@@ -18,5 +19,8 @@ module UsersHelper
 
     def user_name
     	User.find_by_id(session[:user_id]).fullname
+    end 
+
+    class << self 
     end 
 end

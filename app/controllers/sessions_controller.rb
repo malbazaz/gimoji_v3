@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
         u.fullname = auth['info']['name']
         u.username = auth['info']['name'].gsub(" ", "-").downcase
         u.email = auth['info']['email']
+        u.password = auth['info']['name']
       end 
       @user.save 
       if @user.id.nil? && auth['uid']
@@ -27,7 +28,7 @@ class SessionsController < ApplicationController
     end 
     if @user
       session[:user_id] = @user.id
-      binding.pry
+      #binding.pry
       flash[:message] = "You have successfully logged in" 
       redirect_to "/users/#{@user.id}"
    else 
