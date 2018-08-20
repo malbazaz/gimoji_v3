@@ -1,3 +1,8 @@
-
+<% if @occasion %>
 
 <%= render partial:"occasion", locals: {occasion: @occasion} %>
+<% elsif params[:id] == "most_popular_occasion" %>
+<h3><%= Occasion.most_popular_occasion %> is the most popular occasion.</h3>
+
+
+<% end %>
