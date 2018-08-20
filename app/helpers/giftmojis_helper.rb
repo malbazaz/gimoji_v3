@@ -1,5 +1,6 @@
 require 'pry'
 module GiftmojisHelper
+include Rails.application.routes.url_helpers
 
 		def current_user 
 			user = User.find_by_id(session[:user_id])
@@ -22,5 +23,9 @@ module GiftmojisHelper
 	def no_owner?
 		Giftmoji.any? { |u| u.user_id.nil? }
 	end 
+
+class << self 
+
+end 
 
 end

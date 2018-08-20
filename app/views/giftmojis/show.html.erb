@@ -1,3 +1,4 @@
+<% if @giftmoji %>
 <h2><%= @giftmoji.name %></h2>
 
 <h4> Tagline: <%= @giftmoji.tag %> </h4>
@@ -41,4 +42,30 @@
 <%= f.text_area :message %><br/><br/>
 <%= f.submit "Gift Giftmoji" %>
 <% end %>
+<% end %>
+
+<% elsif params[:id] == "happy_ones" %>
+
+<%= Giftmoji.happy_ones %>
+
+<% elsif params[:id] == "sad_ones" %>
+
+<%= Giftmoji.sad_ones %>
+
+<% elsif params[:id] == "name_of_most_expensive" %>
+
+<%= Giftmoji.name_of_most_expensive %>
+
+<% elsif params[:id] == "name_of_cheapest" %>
+
+<%= Giftmoji.name_of_cheapest %>
+
+<% elsif params[:id] == "ids_without_owner" %>
+
+<%= Giftmoji.ids_without_owner %>
+
+<% elsif params[:id] == "name_of_birthday_giftmojis" %>
+
+<%= Giftmoji.name_of_birthday_giftmojis %>
+
 <% end %>

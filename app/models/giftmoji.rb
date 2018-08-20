@@ -23,7 +23,7 @@ class Giftmoji < ApplicationRecord
   	@most_expensive	= Giftmoji.all.order(price: :asc).limit(1).pluck(:name)[0]
   	end 
 
- 	def self.ids_for_without_owner 
+ 	def self.ids_without_owner 
  		Giftmoji.where(user_id: :nil).pluck(:id)
  	end 
 
