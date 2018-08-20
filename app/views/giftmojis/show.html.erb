@@ -45,27 +45,30 @@
 <% end %>
 
 <% elsif params[:id] == "happy_ones" %>
-
-<%= Giftmoji.happy_ones %>
+<h6> Here are the happy giftmojis: </h6>
+<% Giftmoji.happy_ones.each do |gift| %>
+<%= gift %>
+<% end %>
 
 <% elsif params[:id] == "sad_ones" %>
+<h6> Here are the sad giftmojis: </h6>
+<% Giftmoji.sad_ones.each do |gift| %>
+<%= gift %>
+<% end %>
 
-<%= Giftmoji.sad_ones %>
 
 <% elsif params[:id] == "name_of_most_expensive" %>
-
+<h6> The most expensive Giftmoji is: </h6>
 <%= Giftmoji.name_of_most_expensive %>
 
 <% elsif params[:id] == "name_of_cheapest" %>
-
+<h6> The cheapest Giftmoji is: </h6>
 <%= Giftmoji.name_of_cheapest %>
 
-<% elsif params[:id] == "ids_without_owner" %>
-
-<%= Giftmoji.ids_without_owner %>
-
 <% elsif params[:id] == "name_of_birthday_giftmojis" %>
-
-<%= Giftmoji.name_of_birthday_giftmojis %>
+These are the Giftmojis that were gifted on Birthdays:
+<% Giftmoji.name_of_birthday_giftmojis.each do |gift| %>
+<%= gift %>
+<% end %>
 
 <% end %>
