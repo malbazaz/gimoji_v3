@@ -6,7 +6,8 @@ class User < ApplicationRecord
          has_many :occasions, through: :giftmojis
          validates :fullname, presence: true 
          validates :username, uniqueness: true
-         #validates :password, presence: true, unless: :uid 
+         validates :uid, presence: true, unless: :password
+  		 validates :password, presence: true, unless: :uid
 
     def buy(giftmoji)
 		if self.giftcoins > giftmoji.price
@@ -19,6 +20,7 @@ class User < ApplicationRecord
 			"You don't have any enough giftcoins to purchase this Giftmoji"
 		end 
 	end 
+
 
 	def self.most_giftmojis
 		User.joins(:giftmojis).group("giftmojis.id").order("count(giftmojis.id) DESC").limit(1).pluck(:fullname)[0]
