@@ -6,6 +6,8 @@ class Giftmoji < ApplicationRecord
 	validates :price, :presence => true
 	validates :name, presence: true 
 	validates :name, uniqueness: true
+	validates :price, numericality: {greater_than: 0}
+
 
 	def gift(recipient_name) 
 		if self.user_id == session[:user_id]
