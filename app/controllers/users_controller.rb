@@ -8,7 +8,7 @@ class UsersController < ApplicationController
         #binding.pry
         @user= User.create(user_params)
         session[:user_id]= @user.id
-        redirect_to '/users/:id'
+        redirect_to "/users/#{@user.id}"
     end 
 
 	def index
