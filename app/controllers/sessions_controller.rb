@@ -16,13 +16,13 @@ class SessionsController < ApplicationController
         u.email = auth['info']['email']
       end 
     end 
-    if session[:user_id]
+    if @user.id
       session[:user_id] = @user.id
       flash[:message] = "You have successfully logged in" 
       redirect_to "/users/#{@user.id}"
-    else 
-      flash[:message] = "Please enter the right data to login. Otherwise, sign up."
-    end 
+   else 
+    flash[:message] = "Please enter the right data to login. Otherwise, sign up."
+   end 
   end 
 
   def destroy

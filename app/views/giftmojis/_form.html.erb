@@ -1,3 +1,8 @@
+<% if @giftmoji.errors.any? %>
+<% @giftmoji.errors.full_messages.each do |msg| %>
+<li><%= msg %></li>
+<% end %><% end %>
+
 <%= form_for @giftmoji do |f| %>
     <%= f.label "Name" %>
     <%= f.text_field :name %><br/>

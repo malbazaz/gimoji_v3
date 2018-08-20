@@ -1,3 +1,11 @@
+<% if @giftmoji.errors.any? %>
+
+<% @giftmoji.errors.full_messages.each do |msg| %>
+<li><%= msg %></li>
+<% end %>
+
+<% end %>
+
 <h2>Sign up</h2>
 
 <%= form_for(@user) do |f| %>

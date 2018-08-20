@@ -47,7 +47,7 @@ class GiftmojisController < ApplicationController
                 end
             end 
         else 
-            flas[:message] = "Please login."
+            flash[:message] = "Please login."
             redirect_to '/'
         end
     end 

@@ -5,6 +5,7 @@ class User < ApplicationRecord
          has_many :emotions, through: :giftmoji_emotions
          has_many :occasions, through: :giftmojis
          validates :fullname, presence: true 
+         validates :username, uniqueness: true
 
     def buy(giftmoji)
 		if self.giftcoins > giftmoji.price

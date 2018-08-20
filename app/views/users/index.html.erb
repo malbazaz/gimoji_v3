@@ -1,5 +1,5 @@
 <div class="info">
-<%= @users.each do |user| %>
+<% @users.each do |user| %>
 <p><%= link_to user.username, user_path(user) %>
 Name: <%= user.fullname %> -
 <% if user_admin? %>
