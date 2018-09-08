@@ -12,7 +12,8 @@
 <!--     <% @user.giftmojis.each do |giftmoji| %>
     <%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - 
     <%end%></p> -->
-    <div class="display_my_giftmojis"></div>
+    <div class="display_my_giftmojis">
+    </div>
 
     <p><%= link_to 'See all Giftmojis', giftmojis_path %></p>
     <p><strong>Emotions:</strong> <% @user.emotions.uniq.each do |emotion| %>
@@ -30,8 +31,27 @@ $(document).ready(function () {
     e.preventDefault();
     debugger;
     var userId = parseInt($(this).attr("data-id"))
-    $.get("/users/"+userId+"/giftmojis"+".json", function(giftmoji){
+    $.get("/users/"+userId+"/giftmojis"+".json", function(giftmojis){
+
+
       debugger;
+      let giftmojis_list = ""
+      for(let i=0;i<giftmojis.length;i++){
+      let giftmo = giftmojis[i]
+      let giftmo_id = giftmojis[i]["id"]
+      let giftmo_name = giftmojis[i]["name"]
+      let name = giftmo["name"]
+$(".display_my_giftmojis").append("<a href='users/"+userId+"/giftmojis/"+giftmo_id+"' class='load_giftmoji' data-subid='"+giftmo_id+"' > "+giftmo_name+"</a>"+"  -")
+      }
+
+$(".load_giftmoji").on("click", function(e) {
+    e.preventDefault();
+    var giftmo_subId = parseInt($(this).attr("data-subid"))
+    $.get("/users"+userId+"/giftmojis/"+giftmo_subId+".json", function(subGiftmo){
+      debugger;
+    })
+    })
+
     })
     // 
     // var nextId = parseInt($(".js-next").attr("data-id")) + 1;
