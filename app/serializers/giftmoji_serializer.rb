@@ -1,3 +1,3 @@
 class GiftmojiSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name, :tag, :price
 end
