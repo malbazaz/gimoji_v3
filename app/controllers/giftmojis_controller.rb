@@ -37,7 +37,11 @@ class GiftmojisController < ApplicationController
     def index 
         if !!session[:user_id]
             if params[:user_id]
-                @giftmojis = User.find_by_id(params[:user_id]).giftmojis 
+                @giftmojis = User.find_by_id(params[:user_id]).giftmojis
+                respond_to do |format|
+                  format.html
+                  format.json {render json: @giftmojis }
+                end 
             else 
                 @user = User.find_by_id(params[:id])
                 if params[:occasion_id]
