@@ -7,9 +7,13 @@
     <% if user_admin? || current_user? %>
     <p><strong>Giftcoins Balance:</strong>  <%= @user.giftcoins %></p>
     <% end %>
-    <p><strong>Giftmojis:</strong> <% @user.giftmojis.each do |giftmoji| %>
-                                   <%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - 
-                                   <%end%></p>
+
+    <p><strong><%= link_to "My Giftmojis", user_giftmojis_path(@user), class: "my_giftmojis_link", :data => {id: @user.id} %></strong>
+<!--     <% @user.giftmojis.each do |giftmoji| %>
+    <%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - 
+    <%end%></p> -->
+    <div class="display_my_giftmojis"></div>
+
     <p><%= link_to 'See all Giftmojis', giftmojis_path %></p>
     <p><strong>Emotions:</strong> <% @user.emotions.uniq.each do |emotion| %>
                                    <%= link_to emotion.name, emotion_path(emotion) %> - 
@@ -19,3 +23,22 @@
     <p><%= link_to "Create new Giftmoji", new_user_giftmoji_path(@user) %></p>
     <% end %>
   </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script type="text/javascript" charset="utf-8">
+$(document).ready(function () {
+  $(".my_giftmojis_link").on("click", function() {
+    debugger;
+    let userId = parseInt($(this).attr("data-id"))
+    // var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    // $.get("/products/" + nextId + ".json", function(data) {
+    //   var product = data;
+    //   $(".productName").text(product["name"]);
+    //   $(".productPrice").text(product["price"]);
+    //   $(".productDescription").text(product["description"]);
+    //   $(".productInventory").text(product["inventory"]);
+    //   // re-set the id to current on the link
+    //   $(".js-next").attr("data-id", product["id"]);
+    });
+  });
+// });
+</script>
