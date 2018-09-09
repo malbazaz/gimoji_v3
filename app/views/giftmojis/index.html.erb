@@ -3,7 +3,7 @@
 <h4> Please find all the Giftmojis you can still buy: </h4>
 <% @giftmojis.each do |giftmoji| %>
 <p><% if giftmoji.user_id.nil?  %>
-<%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - price: <%= giftmoji.price %> giftcoins.</p>
+<%= link_to giftmoji.name, giftmoji_path(giftmoji)%> - price: <%= giftmoji.price %> giftcoins.</p>
 <% end %>
 <% end %>
 <% else %>
@@ -14,7 +14,7 @@
 <% @giftmojis.each do |giftmoji| %>
 <p>
 <% if !giftmoji.user_id.nil? %>
-<%= link_to giftmoji.name, giftmoji_path(giftmoji) %> - owned by: <%= link_to giftmoji.user.fullname, user_giftmojis_path(giftmoji.user) %></p>
+<%= link_to giftmoji.name, giftmoji_path(giftmoji), class: "giftmoji_link", :data =>{id:giftmoji.id} %>- owned by: <%= link_to giftmoji.user.fullname, user_giftmojis_path(giftmoji.user) %><div class="load_giftmoji" id="<%=giftmoji.id%>"></div></p>
 <% end %>
 <% end %>
 
@@ -26,3 +26,22 @@
 <a href="/giftmojis/name_of_most_expensive">Most Expensive Giftmoji</a> - 
 <a href="/giftmojis/name_of_cheapest">Cheapest Giftmoji</a> - 
 <a href="/giftmojis/name_of_birthday_giftmojis">Giftmojis that were gifted on a Birthday</a>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+ <script type="text/javascript" charset="utf-8">
+  	$(document).ready(function () {
+  	$(".giftmoji_link").on("click", function(e) {
+    e.preventDefault();
+    var giftmojiId = parseInt($(this).attr("data-id"))
+  	$(".load_giftmoji").empty()
+  	$.get("/giftmojis/"+giftmojiId+".json", function(giftmo){
+  		let name = giftmo["name"]
+  		let tag = giftmo["tag"]
+  		let price = giftmo["price"]
+  	$(`.load_giftmoji#${giftmojiId}`).append("<p><strong> Name: <a href='"+giftmojiId+"'>"+name+"</a></strong></p>")
+  	$(`.load_giftmoji#${giftmojiId}`).append("<p><strong> Price: </strong>"+price+"</p>")
+  	$(`.load_giftmoji#${giftmojiId}`).append("<p><strong> Tag: </strong>"+tag+"</p>")
+  		debugger;
+  	})
+  	})
+  	})
+  </script>
