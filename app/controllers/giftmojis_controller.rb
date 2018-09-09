@@ -7,7 +7,7 @@ class GiftmojisController < ApplicationController
         elsif params[:user_id]
              @giftmoji = Giftmoji.new(user_id: params[:user_id])
         else  
-            @giftmoji = Giftmoji.new 
+            @giftmoji = Giftmoji.new
         end 
 
         if session[:user_id]
@@ -21,6 +21,7 @@ class GiftmojisController < ApplicationController
            #     render "new" 
            # end 
         end 
+
     end
 
     def create 
@@ -29,12 +30,13 @@ class GiftmojisController < ApplicationController
         update_giftmoji_with_emotions_ids
         update_giftmoji_with_emotion_name
         @giftmoji.save
+        #         respond_to do |format|
+        #     format.html
+        #     format.json {render json: @giftmoji}
+        # end 
+        render json: @giftmoji, status: 201
         flash[:message] = "You have successfully created a Giftmoji called #{@giftmoji.name}"
-        redirect_to "/giftmojis/#{@giftmoji.id}"
-        respond_to do |format|
-            format.html
-            format.json {render json: @giftmoji}
-        end 
+        # redirect_to "/giftmojis/#{@giftmoji.id}"
     end 
 
     def index 
