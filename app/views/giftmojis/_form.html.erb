@@ -4,8 +4,7 @@
 <li><%= msg %></li>
 <% end %><% end %>
 <% end %>
-
-<%= form_for(@giftmoji, :remote => true) do |f| %>
+<%= form_for @giftmoji do |f| %>
     <%= f.label "Name" %>
     <%= f.text_field :name %><br/>
     <%= f.label "Tag" %>
@@ -30,18 +29,32 @@
   <p id="giftmojiEmotions"></p>
 </div>
 
-
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script> -->
-<!-- <script type="text/javascript" charset="utf-8"> -->
-  <!-- $(document).ready(function () {
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function () {
     debugger;
     $('form').submit(function(event) {
       event.preventDefault();
 
-    debugger; -->
-  <!-- //     var values = $(this).serialize();
+    debugger;
+    var values = $(this).serialize()
+    $.post('/giftmojis', values, function(data){
+            debugger;
+    });
+
+
+// $.post('/giftmojis', values, function(giftmoji){
+//      debugger;
+// })
+
+})
+})
+</script>
+
+
+  //     ;
  
-  //     var posting = $.post('/giftmojis', values);
+  //     ;
  
   //     posting.done(function(giftmoji) {
   //       let giftmojiId = giftmoji["id"]
@@ -52,6 +65,5 @@
   //       $("#giftmojiName").append("<p><strong> Name: <a href='/giftmojis/"+giftmojiId+"'>"+name+"</a></strong></p>");
   //       $("#giftmojiTag").append(tag);
   //     });
-    });
-  }); -->
-<!-- </script> -->
+  //   });
+  // }); 

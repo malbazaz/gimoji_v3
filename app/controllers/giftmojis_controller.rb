@@ -14,11 +14,7 @@ class GiftmojisController < ApplicationController
             @user = User.find_by_id(session[:user_id])
         if !@user.admin
                 redirect_to "/giftmojis"
-        end  
-        respond_to do |format|
-            format.html
-            format.json {render json: @giftmoji}
-        end    
+        end     
            # if @user.admin
            #     render "new"
            # elsif @giftmoji.user_id == @user 
@@ -35,6 +31,10 @@ class GiftmojisController < ApplicationController
         @giftmoji.save
         flash[:message] = "You have successfully created a Giftmoji called #{@giftmoji.name}"
         redirect_to "/giftmojis/#{@giftmoji.id}"
+        respond_to do |format|
+            format.html
+            format.json {render json: @giftmoji}
+        end 
     end 
 
     def index 
