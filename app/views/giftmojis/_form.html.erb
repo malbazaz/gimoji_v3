@@ -5,7 +5,7 @@
 <% end %><% end %>
 <% end %>
 
-<%= form_for @giftmoji do |f| %>
+<%= form_for(@giftmoji, :remote => true) do |f| %>
     <%= f.label "Name" %>
     <%= f.text_field :name %><br/>
     <%= f.label "Tag" %>
@@ -29,26 +29,29 @@
   <p id="giftmojiPrice"></p>
   <p id="giftmojiEmotions"></p>
 </div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript" charset="utf-8">
-  $(document).ready(function () {
+
+
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script> -->
+<!-- <script type="text/javascript" charset="utf-8"> -->
+  <!-- $(document).ready(function () {
+    debugger;
     $('form').submit(function(event) {
-      //prevent form from submitting the default way
       event.preventDefault();
+
+    debugger; -->
+  <!-- //     var values = $(this).serialize();
  
-      var values = $(this).serialize();
+  //     var posting = $.post('/giftmojis', values);
  
-      var posting = $.post('/giftmojis', values);
- 
-      posting.done(function(giftmoji) {
-        let giftmojiId = giftmoji["id"]
-        let name = giftmoji["name"]
-        let tag = giftmoji["tag"]
-        let price = giftmoji["price"]
-        debugger;
-        $("#giftmojiName").append("<p><strong> Name: <a href='/giftmojis/"+giftmojiId+"'>"+name+"</a></strong></p>");
-        $("#giftmojiTag").append(tag);
-      });
+  //     posting.done(function(giftmoji) {
+  //       let giftmojiId = giftmoji["id"]
+  //       let name = giftmoji["name"]
+  //       let tag = giftmoji["tag"]
+  //       let price = giftmoji["price"]
+  //       debugger;
+  //       $("#giftmojiName").append("<p><strong> Name: <a href='/giftmojis/"+giftmojiId+"'>"+name+"</a></strong></p>");
+  //       $("#giftmojiTag").append(tag);
+  //     });
     });
-  });
-</script>
+  }); -->
+<!-- </script> -->
