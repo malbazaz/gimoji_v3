@@ -40,7 +40,7 @@ class GiftmojisController < ApplicationController
                 @giftmojis = User.find_by_id(params[:user_id]).giftmojis
                 respond_to do |format|
                   format.html
-                  format.json {render json: @giftmojis }
+                  format.json {render json: @giftmojis}
                 end 
             else 
                 @user = User.find_by_id(params[:id])
@@ -48,6 +48,10 @@ class GiftmojisController < ApplicationController
                     @giftmojis = Occasion.find(params[:occasion_id]).giftmojis
                 else 
                     @giftmojis = Giftmoji.all
+                    respond_to do |format|
+                        format.html
+                        format.json {render json: @giftmojis}
+                    end 
                 end
             end 
         else 
@@ -59,6 +63,10 @@ class GiftmojisController < ApplicationController
     def show 
         @giftmoji = Giftmoji.find_by_id(params[:id])
         @user = User.find_by_id(session[:user_id])
+        respond_to do |format|
+                  format.html
+                  format.json {render json: @giftmoji}
+        end 
     end 
 
     def edit
