@@ -15,9 +15,11 @@
   let price = giftmoji["price"]
 
 
+
+debugger;
  
- $("#giftmojiName").append("<p><strong>You created a Giftmoji called <a href='/giftmojis/"+giftmojiId+"'>"+name+"</a> Go ahead click on it if you want to access it's profile page</strong></p>");
-  $("#giftmojiDescription").append("<p> The giftmoji you created goes by the following motto:"+tag+"and has a price of "+price+" giftcoins. To buy it. You will need to on the giftmoji's profile page. </p>");
+ $("#giftmojiName").append("<p><strong>You created a Giftmoji called <a href='/giftmojis/"+giftmojiId+"'>"+name+"</a> <i> Go ahead click on it if you want to access it's profile page</i></strong></p>");
+  $("#giftmojiDescription").append("<p> The giftmoji you created goes by the following motto: <strong>"+tag+"</strong> and has a price of "+price+" giftcoins. To buy it. You will need to on the giftmoji's profile page. </p>");
     });
 
 
