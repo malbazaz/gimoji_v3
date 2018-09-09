@@ -51,10 +51,12 @@
   	$.get("/users/"+userId+".json", function(user){
   		let name = user["fullname"]
   		let username = user["username"]
-  		binding.pry
-  	// $(`.load_giftmoji#${giftmojiId}`).append("<p><strong> Name: <a href='/giftmojis/"+giftmojiId+"'>"+name+"</a></strong></p>")
-  	// $(`.load_giftmoji#${giftmojiId}`).append("<p><strong> Price: </strong>"+price+"</p>")
-  	// $(`.load_giftmoji#${giftmojiId}`).append("<p><strong> Tag: </strong>"+tag+"</p>")
+  		let email = user["email"]
+  		let admin = user["admin"]
+  	$(`.load_user#${userId}`).append("<p><strong> Name: <a href='/users/"+userId+"'>"+name+"</a></strong></p>")
+  	$(`.load_user#${userId}`).append("<p><strong> Username: </strong>"+username+"</p>")
+  	$(`.load_user#${userId}`).append("<p><strong> Email: </strong>"+email+"</p>")
+  	$(`.load_user#${userId}`).append("<p><strong> Admin: </strong>"+admin+"</p>")
   	})
   	})
 
