@@ -14,7 +14,8 @@
     <%end%></p> -->
     <div class="display_my_giftmojis">
     </div>
-
+   <div class="display_my_subGiftmojis">
+    </div>
     <p><%= link_to 'See all Giftmojis', giftmojis_path %></p>
     <p><strong>Emotions:</strong> <% @user.emotions.uniq.each do |emotion| %>
                                    <%= link_to emotion.name, emotion_path(emotion) %> - 
@@ -29,27 +30,32 @@
 $(document).ready(function () {
   $(".my_giftmojis_link").on("click", function(e) {
     e.preventDefault();
-    debugger;
+  $(".display_my_giftmojis").empty()
     var userId = parseInt($(this).attr("data-id"))
     $.get("/users/"+userId+"/giftmojis"+".json", function(giftmojis){
-
-
-      debugger;
       let giftmojis_list = ""
       for(let i=0;i<giftmojis.length;i++){
       let giftmo = giftmojis[i]
       let giftmo_id = giftmojis[i]["id"]
       let giftmo_name = giftmojis[i]["name"]
       let name = giftmo["name"]
-$(".display_my_giftmojis").append("<a href='users/"+userId+"/giftmojis/"+giftmo_id+"' class='load_giftmoji' data-subid='"+giftmo_id+"' > "+giftmo_name+"</a>"+"  -")
+$(".display_my_giftmojis").append("<a href='"+userId+"/giftmojis/"+giftmo_id+"' class='load_giftmoji' data-subid='"+giftmo_id+"'  > "+giftmo_name+"</a>"+"  -")
       }
 
 $(".load_giftmoji").on("click", function(e) {
     e.preventDefault();
     var giftmo_subId = parseInt($(this).attr("data-subid"))
-    $.get("/users"+userId+"/giftmojis/"+giftmo_subId+".json", function(subGiftmo){
-      debugger;
+    $.get("/users/"+userId+"/giftmojis/"+giftmo_subId+".json", function(subGiftmo){
+  $(".display_my_subGiftmojis").empty()
+  $(".display_my_subGiftmojis").append("<p><strong> Name: <a href='"+userId+"/giftmojis/"+giftmo_subId+"'>"+subGiftmo["name"]+"</a></strong></p>")
+  $(".display_my_subGiftmojis").append("<p><strong> Price: </strong>"+subGiftmo["price"]+"</p>")
+  $(".display_my_subGiftmojis").append("<p><strong> Tag: </strong>"+subGiftmo["tag"]+"</p>")
     })
+// $.get(this.href).done(function(resp){
+//   $(".display_my_subGiftmojis").html(resp)
+// })
+
+
     })
 
     })
