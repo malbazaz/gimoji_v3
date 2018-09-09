@@ -22,6 +22,10 @@ class UsersController < ApplicationController
         if !!session[:user_id]
             #binding.pry
              @user = User.find_by_id(params[:id])
+            respond_to do |format|
+                  format.html
+                  format.json {render json: @user}
+            end 
         else 
             flash[:message] = "You are not logged in, please login."
             redirect_to '/'
