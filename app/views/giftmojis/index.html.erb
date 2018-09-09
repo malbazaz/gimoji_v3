@@ -3,7 +3,7 @@
 <h4> Please find all the Giftmojis you can still buy: </h4>
 <% @giftmojis.each do |giftmoji| %>
 <p><% if giftmoji.user_id.nil?  %>
-<%= link_to giftmoji.name, giftmoji_path(giftmoji)%> - price: <%= giftmoji.price %> giftcoins.</p>
+<%= link_to giftmoji.name, giftmoji_path(giftmoji), class: "giftmoji_link", data: {id: giftmoji.id} %> - price: <%= giftmoji.price %> giftcoins.</div><div class="load_giftmoji" id="<%= giftmoji.id %>"></div></p>
 <% end %>
 <% end %>
 <% else %>
