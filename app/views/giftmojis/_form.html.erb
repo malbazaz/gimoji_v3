@@ -22,3 +22,33 @@
     <br/>
     <%= f.submit %>
   <% end %>
+
+ <div id="newGiftmoji">
+  <h2 id="giftmojiName"></h2>
+  <p id="giftmojiTag"></p>
+  <p id="giftmojiPrice"></p>
+  <p id="giftmojiEmotions"></p>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+ 
+      var values = $(this).serialize();
+ 
+      var posting = $.post('/giftmojis', values);
+ 
+      posting.done(function(giftmoji) {
+        let giftmojiId = giftmoji["id"]
+        let name = giftmoji["name"]
+        let tag = giftmoji["tag"]
+        let price = giftmoji["price"]
+        debugger;
+        $("#giftmojiName").append("<p><strong> Name: <a href='/giftmojis/"+giftmojiId+"'>"+name+"</a></strong></p>");
+        $("#giftmojiTag").append(tag);
+      });
+    });
+  });
+</script>

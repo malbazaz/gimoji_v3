@@ -12,10 +12,13 @@ class GiftmojisController < ApplicationController
 
         if session[:user_id]
             @user = User.find_by_id(session[:user_id])
-            if !@user.admin
+        if !@user.admin
                 redirect_to "/giftmojis"
-            end  
-           
+        end  
+        respond_to do |format|
+            format.html
+            format.json {render json: @giftmoji}
+        end    
            # if @user.admin
            #     render "new"
            # elsif @giftmoji.user_id == @user 
