@@ -35,7 +35,7 @@ class GiftmojisController < ApplicationController
         #     format.json {render json: @giftmoji}
         # end 
         render json: @giftmoji, status: 201
-        flash[:message] = "Congrats!!! You have successfully created a Giftmoji called #{@giftmoji.name}. Welcome on it's profile page for the first time."
+        flash[:message] = "Congrats!!! You have successfully created a Giftmoji called #{@giftmoji.name}."
         # redirect_to "/giftmojis/#{@giftmoji.id}"
     end 
 
