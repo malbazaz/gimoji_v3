@@ -5,7 +5,7 @@ function Giftmoji(name, tag, price, emotions){
 	this.emotions = emotions
 }
 
- Giftmoji.prototype.emotionsPrint = () => {
+ Giftmoji.prototype.emotionsPrint = function () {
  	let emoArray = this.emotions 
  	let emoPrint = ""
   for(let i=0;i<emoArray.length;i++){
