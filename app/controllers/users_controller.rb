@@ -23,8 +23,8 @@ class UsersController < ApplicationController
             #binding.pry
              @user = User.find_by_id(params[:id])
             respond_to do |format|
-                  format.html
-                  format.json {render json: @user}
+                format.json {render json: @user}
+                format.html
             end 
         else 
             flash[:message] = "You are not logged in, please login."

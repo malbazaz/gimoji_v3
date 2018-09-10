@@ -14,7 +14,7 @@
 <% @giftmojis.each do |giftmoji| %>
 <p>
 <% if !giftmoji.user_id.nil? %>
-<%= link_to giftmoji.name, giftmoji_path(giftmoji), class: "giftmoji_link", :data =>{id:giftmoji.id} %>- owned by: <%= link_to giftmoji.user.fullname, user_giftmojis_path(giftmoji.user), class: "user_link", :data =>{id:giftmoji.user.id} %><div class="load_giftmoji" id="<%=giftmoji.id%>"></div><div class="load_user" id="<%=giftmoji.user.id%>"></div></p>
+<%= link_to giftmoji.name, giftmoji_path(giftmoji), class: "giftmoji_link", :data =>{id:giftmoji.id} %>- owned by: <%= link_to giftmoji.user.fullname, user_path(giftmoji.user), class: "user_link", :data =>{id:giftmoji.user.id, giftmoId: giftmoji.id} %><div class="load_giftmoji" id="<%=giftmoji.id%>"></div><div class="load_user" id="giftmoji<%=giftmoji.id%>"></div></p>
 <% end %>
 <% end %>
 
@@ -49,18 +49,21 @@
   	})
   	$(".user_link").on("click", function(e) {
     e.preventDefault();
+  
     var userId = parseInt($(this).attr("data-id"))
+    var giftmoId = parseInt($(this).attr("data-giftmoId"))
     $(".load_user").empty()
   	$(".load_giftmoji").empty()
   	$.get("/users/"+userId+".json", function(user){
+  
   		let name = user["fullname"]
   		let username = user["username"]
   		let email = user["email"]
   		let admin = user["admin"]
-  	$(`.load_user#${userId}`).append("<p><strong> Name: <a href='/users/"+userId+"'>"+name+"</a></strong></p>")
-  	$(`.load_user#${userId}`).append("<p><strong> Username: </strong>"+username+"</p>")
-  	$(`.load_user#${userId}`).append("<p><strong> Email: </strong>"+email+"</p>")
-  	$(`.load_user#${userId}`).append("<p><strong> Admin: </strong>"+admin+"</p>")
+  	$(`.load_user#giftmoji${giftmoId}`).append("<p><strong> Name: <a href='/users/"+userId+"'>"+name+"</a></strong></p>")
+  	$(`.load_user#giftmoji${giftmoId}`).append("<p><strong> Username: </strong>"+username+"</p>")
+  	$(`.load_user#giftmoji${giftmoId}`).append("<p><strong> Email: </strong>"+email+"</p>")
+  	$(`.load_user#giftmoji${giftmoId}`).append("<p><strong> Admin: </strong>"+admin+"</p>")
   	})
   	})
 
