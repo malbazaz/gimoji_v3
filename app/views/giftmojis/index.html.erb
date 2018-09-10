@@ -38,19 +38,9 @@
   		let name = giftmo["name"]
   		let tag = giftmo["tag"]
   		let price = giftmo["price"]
-      let emotions_json = giftmo["emotions"]
-      let emotions = ""
-      if(emotions_json){
-        for(let i=0;i<emotions_json.length;i++){
-          emotions += giftmo["emotions"][i]["name"]
-          if(i<emotions_json.length-1){
-            emotions += ", "
-          } else {
-            emotions += ". "
-          }
-        }
-      }
-
+      let emotionsJson = giftmoji["emotions"]
+      let giftmoInstance = new Giftmoji(name, tag, price, emotionsJson)
+      let emotions = giftmoInstance.emotionsPrint()
   	$(`.load_giftmoji#${giftmojiId}`).append("<p><strong> Name: <a href='/giftmojis/"+giftmojiId+"'>"+name+"</a></strong></p>")
   	$(`.load_giftmoji#${giftmojiId}`).append("<p><strong> Price: </strong>"+price+"</p>")
   	$(`.load_giftmoji#${giftmojiId}`).append("<p><strong> Tag: </strong>"+tag+"</p>")

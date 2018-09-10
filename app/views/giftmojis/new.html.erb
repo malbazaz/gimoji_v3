@@ -12,21 +12,11 @@
   let name = giftmoji["name"]
   let tag = giftmoji["tag"]
   let price = giftmoji["price"]
-  let emotions_json = giftmoji["emotions"]
-  let emotions = ""
-  for(let i=0;i<emotions_json.length;i++){
-  emotions += giftmoji["emotions"][i]["name"]
-  if(i<emotions_json.length-1){
-  emotions += ", "
-} else 
-{
-	emotions += " "
-  }
-}
-
- 
+  let emotionsJson = giftmoji["emotions"]
+  let giftmoInstance = new Giftmoji(name, tag, price, emotionsJson)
+  let emotions = giftmoInstance.emotionsPrint()
  $("#giftmojiName").append("<p><strong>You created a Giftmoji called <a href='/giftmojis/"+giftmojiId+"'>"+name+"</a> <i> Go ahead click on it if you want to access it's profile page</i></strong></p>");
-  $("#giftmojiDescription").append("<p> The giftmoji you created goes by the following motto: <strong><i>"+tag+"</i></strong> and has a price of "+price+" giftcoins, and has for emotions:<bold><i> "+emotions+"</i></bold>. To buy it. You will need to on the giftmoji's profile page. </p>");
+  $("#giftmojiDescription").append("<p> The giftmoji you created goes by the following motto: <strong><i>"+tag+"</i></strong> and has a price of "+price+" giftcoins, and has for emotions:<bold><i> "+emotions+"</i></bold> To buy it. You will need to on the giftmoji's profile page. </p>");
     });
 
 
