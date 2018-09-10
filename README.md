@@ -1,8 +1,6 @@
 # Emoji
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/emoji`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to your Giftmojis v3. This app will enable you to purchase giftmojis and gift them to your friends. If you have been granted special admin privileges, you can also create giftmojis that you can later buy, or you can just create them for the store. Enjoy!
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+You can use it by going to the website, and sign up there.
 
 ## Development
 
