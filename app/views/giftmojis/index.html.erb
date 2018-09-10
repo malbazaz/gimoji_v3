@@ -38,7 +38,7 @@
   		let name = giftmo["name"]
   		let tag = giftmo["tag"]
   		let price = giftmo["price"]
-      let emotionsJson = giftmoji["emotions"]
+      let emotionsJson = giftmo["emotions"]
       let giftmoInstance = new Giftmoji(name, tag, price, emotionsJson)
       let emotions = giftmoInstance.emotionsPrint()
   	$(`.load_giftmoji#${giftmojiId}`).append("<p><strong> Name: <a href='/giftmojis/"+giftmojiId+"'>"+name+"</a></strong></p>")
